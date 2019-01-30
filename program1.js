@@ -1,28 +1,31 @@
-console.log('Please enter : ')
+console.log("--- Calculate Bmi ---")
+let result = '';
+console.log('height: ')
 let stdin = process.openStdin()
-let value 
-	stdin.addListener("data", (d) => {
-		value = d.toString().trim()
-		palindrome(value)
-		stdin.destroy()
-		
-	})
-var palindrome = (data) => {
+stdin.addListener("data",  (h) => {
+    console.log('width: ')
+    stdin.addListener("data", (w) => {
+        if(isNaN(Number(h)) === false && isNaN(Number(w)) === false){
+            result = calculateBMI(h, w)
+            console.log(result)
+        }
+        else{
+            console.log("Input InCorrect")
+        }
+        stdin.destroy()
+   })
+})
+var calculateBMI = (h, w) => {
 	var reverse = ''
-	for(var i = data.length - 1; i >= 0; i--){
-        reverse += data[i];
+    var bmi = 0;
+    bmi = w/((h/100) * (h/100))
+    if(bmi < 18.5) {
+        return 'Result : UnderWeight';
     }
-    console.log(data+' => '+reverse)
-
-    if(data.toLowerCase() == reverse.toLowerCase()){
-    	if(data.toLowerCase() == reverse.toLowerCase()){
-    		console.log('Palindrome Non Case Sensitive')
-    	}
-    	if(data != reverse){
-    		console.log('Palindrome Case Sensitive')
-    	}
+    else if(bmi >= 18.5 && bmi <= 24.9){
+        return 'Result : Perfect'
     }
     else{
-    	console.log('Not Palindrome')
+        return 'Result : Overweight'
     }
 }		

@@ -1,28 +1,19 @@
-console.log('Please enter : ')
+let result = '';
+console.log('height: ')
 let stdin = process.openStdin()
-let value 
-	stdin.addListener("data", (d) => {
-		value = d.toString().trim()
-		palindrome(value)
-		stdin.destroy()
-		
-	})
-var palindrome = (data) => {
-	var reverse = ''
-	for(var i = data.length - 1; i >= 0; i--){
-        reverse += data[i];
-    }
-    console.log(data+' => '+reverse)
-
-    if(data.toLowerCase() == reverse.toLowerCase()){
-    	if(data.toLowerCase() == reverse.toLowerCase()){
-    		console.log('Palindrome Non Case Sensitive')
-    	}
-    	if(data != reverse){
-    		console.log('Palindrome Case Sensitive')
-    	}
-    }
-    else{
-    	console.log('Not Palindrome')
-    }
-}		
+stdin.addListener("data",  (h) => {
+    console.log('Sumside: ')
+    stdin.addListener("data", (s) => {
+        if(isNaN(Number(h)) === false && isNaN(Number(s)) === false){
+            result = trapezoidArea(h, s)
+            console.log('Area : ' + result)
+        }
+        else{
+            console.log("Input InCorrect")
+        }
+        stdin.destroy()
+   })
+})
+var trapezoidArea = (h, s) => {
+    return (0.5 * h * s)
+}       
